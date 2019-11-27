@@ -1,0 +1,103 @@
+<ion-header mode="md" no-border>
+  <ion-toolbar mode="md">
+    <ion-title>Create New Grant</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" color="medium">
+        <ion-icon slot="icon-only" class="gp-close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="form-details">
+    <ion-list lines="none" class="forms" mode="md">
+      <ion-item>
+        <ion-input placeholder="Grant Name" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input placeholder="Grant Link" type="link"></ion-input>
+      </ion-item>
+      <ion-radio-group>
+        <ion-row class="radio">
+          <ion-col size="6">
+            <ion-item class="item-radio">
+              <ion-label>Single Delivery Date</ion-label>
+              <ion-radio mode="md" [checked]="true" color="secondary" slot="start"
+                (click)="setradio('singleDeliveryDate')">
+              </ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item class="item-radio">
+              <ion-label>Multiple Milestones</ion-label>
+              <ion-radio mode="md" [checked]="false" color="secondary" slot="start"
+                (click)="setradio('multipleMilestones')">
+              </ion-radio>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-radio-group>
+      <div *ngIf="isSelected('singleDeliveryDate')" class="hide-show-section">
+        <ion-item>
+          <ion-datetime displayFormat="MMM DD YYYY" placeholder="Funding Expiry Date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+          <ion-datetime displayFormat="MMM DD YYYY" placeholder="Completion Date"></ion-datetime>
+        </ion-item>
+      </div>
+      <div *ngIf="isSelected('multipleMilestones')" class="hide-show-section">
+        <ion-row class="items">
+          <ion-col>
+            <ion-item>
+              <ion-input placeholder="Milestone 1" type="number"></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col>
+            <ion-item>
+              <ion-datetime displayFormat="MMM DD YYYY" placeholder="Completion Date"></ion-datetime>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-button mode="md" fill="clear" class="tt-none dashed-border" expand="block">Add New Milestone</ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+      <ion-item>
+        <ion-input placeholder="Grant Manager" type="text"></ion-input>
+      </ion-item>
+      <div class="section-title">Grantees</div>
+      <ion-item>
+        <ion-input placeholder="John Smith" type="text"></ion-input>
+      </ion-item>
+      <ion-button mode="md" fill="clear" class="tt-none dashed-border"  expand="block">Add New Grantee</ion-button>
+      <ion-row class="inputs">
+        <ion-col>
+          <ion-item>
+            <ion-input placeholder="Amount" type="number"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+          <ion-item>
+            <ion-select value="currency" class="custom-arrow" okText="Okay" cancelText="Dismiss">
+              <ion-select-option value="currency">Currency</ion-select-option>
+              <ion-select-option value="blonde">Blonde</ion-select-option>
+              <ion-select-option value="black">Black</ion-select-option>
+              <ion-select-option value="red">Red</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+  </div>
+  <hr>
+  <div class="total-amount">
+    $120.000
+  </div>
+
+  <div class="submit-button">
+    <ion-button mode="md" class="tt-none" expand="block" (click)="onClick()">
+      Create Grant
+    </ion-button>
+  </div>
+</ion-content>
